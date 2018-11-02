@@ -1,21 +1,21 @@
 <template>
     <Page>
-        <ActionBar title="Flashcard Vue!"/>
-        <FlashCard v-bind:flashcard="flashcards"/>
+        <ActionBar title="FlashCard Vue">
+          <ActionItem text="Next Card" android.systemIcon="Next Card" @tap="nextCard" />
+        </ActionBar>
+        <FlashCard row=1 col=0 v-bind:flashcard="flashcard"/>
     </Page>
 </template>
 
 <script>
     import FlashCard from './FlashCard.vue';
-    import * as http from "http";
+    const http = require("http");
+    import * as app from 'tns-core-modules/application'
 
     export default {
         data() {
             return {
-                flashcards: [{
-                    front: "",
-                    back: ""
-                }],
+                flashcards: this.getCards(),
                 current_card: 0,
                 flashcard: {
                     front: "",
@@ -30,30 +30,32 @@
                   method: "GET",
                   headers: { "Content-Type": "application/json" }
                 }).then(response => {
-                  this.flashcards = response
+                    this.flashcards = response.content.toJSON();
+                    this.flashcard = this.flashcards[0];
+                    this.current_card = 0;
                 }, error => {
-                  console.error(error);
+                    console.log(error)
                 });
             },
             nextCard: function() {
                 if(this.current_card < this.flashcards.length-1) {
                     this.current_card += 1;
-                    setCard(this.flashcards[current_card])
+                    setCard(this.flashcards[this.current_card])
                 }
             },
             setCard: function(card) {
                 this.flashcard = card;
+            },
+            onLoaded: function() {
+                this.getCards();
             }
         },
         components: {
             FlashCard
         },
-        mounted: function() {
-            getCards();
-
-        }
 
     }
+
 </script>
 
 <style scoped>
