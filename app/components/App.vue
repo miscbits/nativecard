@@ -1,9 +1,9 @@
 <template>
     <Page>
         <ActionBar title="FlashCard Vue">
-          <ActionItem text="Next Card" android.systemIcon="Next Card" @tap="nextCard" />
+          <ActionItem text="Next Card" android.systemIcon="Next Card" @tap="nextCard()" />
         </ActionBar>
-        <FlashCard row=1 col=0 v-bind:flashcard="flashcard"/>
+        <FlashCard row=1 col=0 v-bind:flashcard="flashcard" v-bind:flipped="flashcard.flipped"/>
     </Page>
 </template>
 
@@ -19,7 +19,8 @@
                 current_card: 0,
                 flashcard: {
                     front: "",
-                    back: ""
+                    back: "",
+                    flipped: false
                 }
             }
         },
@@ -40,11 +41,10 @@
             nextCard: function() {
                 if(this.current_card < this.flashcards.length-1) {
                     this.current_card += 1;
-                    setCard(this.flashcards[this.current_card])
+                    var card = this.flashcards[this.current_card];
+                    card.flipped = false;
+                    this.flashcard = card;
                 }
-            },
-            setCard: function(card) {
-                this.flashcard = card;
             },
             onLoaded: function() {
                 this.getCards();
