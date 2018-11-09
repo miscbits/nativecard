@@ -6,22 +6,25 @@
   "license": "MIT",
   "nativescript": {
     "id": "com.misbcits.flashcards",
-    "tns-ios": {
-      "version": "4.2.0"
-    },
     "tns-android": {
-      "version": "4.2.0"
+      "version": "5.0.0"
+    },
+    "tns-ios": {
+      "version": "5.0.0"
     }
   },
   "dependencies": {
-    "vuex": "^3.0.1",
     "@vue/devtools": "5.0.0-beta.3",
+    "ajv": "^6.0.0",
+    "electron": "^3.0.8",
     "nativescript-socket.io": "^0.9.0",
-    "nativescript-vue-devtools": "^1.0.0",
-    "nativescript-toast": "^1.4.6",
     "nativescript-theme-core": "^1.0.4",
+    "nativescript-toast": "^1.4.6",
     "nativescript-vue": "^2.0.0",
-    "tns-core-modules": "^4.2.0"
+    "nativescript-vue-devtools": "^1.0.0",
+    "tns-core-modules": "^5.0.2",
+    "typescript": "^3.1.6",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -34,14 +37,14 @@
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "lazy": "1.0.11",
-    "nativescript-dev-webpack": "next",
+    "nativescript-dev-webpack": "^0.18.0-2018-11-07-170758-02",
     "nativescript-vue-template-compiler": "^2.0.0",
     "nativescript-worker-loader": "~0.9.0",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.1.0",
     "terser-webpack-plugin": "^1.1.0",
     "vue-loader": "^15.2.6",
-    "webpack": "^4.16.4",
+    "webpack": "^4.25.1",
     "webpack-bundle-analyzer": "~2.13.1",
     "webpack-cli": "^3.1.0"
   }
